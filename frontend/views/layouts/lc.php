@@ -49,7 +49,7 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/st/index']],
         ];
     }
-    $menuItems[] ='<li>'.Html::a($cfg['addlinknam'],$cfg['addlink']).'</li>';
+    //$menuItems[] ='<li>'.Html::a($cfg['addlinknam'],$cfg['addlink']).'</li>';
     if (Access::isAdmin())
     {
         $menuItems[] = ['label'=>'Приложения',

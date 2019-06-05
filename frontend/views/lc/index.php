@@ -9,7 +9,7 @@ use yii\helpers\Html;
  * @var $calcdat common\components\Date;
  * @var $model LcWatsApp;
  */
-$this->title = 'La Letty';
+$this->title = 'FixLetty';
 
 $i=1;
 $j=1;
@@ -111,34 +111,12 @@ function renderBlock($tag,$msg,$list,$i)
     </div>
 
 <?php
-$list1=$model->findLaserRecords();
-$msg='Лазерная эпиляция. Клиенты посетившие студию '.$model->days_laser.' дней назад. '.$model->getDateLaser();
 $i=1;
-renderBlock('laser',$msg,$list1,$i);
-
-$i=$i+count($list1);
-$list2=$model->findWaxRecords();
-$msg='Воск/шугаринг эпиляция. Клиенты посетившие студию '.$model->days_wax.' дней назад. '.$model->getDateWax();
-renderBlock('wax',$msg,$list2,$i);
-$list1=array_merge($list1,$list2);
-
-$i=$i+count($list2);
 $list2=$model->findElectroRecords(1);
-$msg='Электро эпиляция. Клиенты посетившие студию '.$model->days_electrod1.' дней назад. '.$model->getDateEl(1);
+$msg='Массаж. Клиенты посетившие студию '.$model->days_electrod1.' дней назад. '.$model->getDateEl(1);
 renderBlock('ee1',$msg,$list2,$i);
-$list1=array_merge($list1,$list2);
+$list1=$list2;
 
-$i=$i+count($list2);
-$list2=$model->findElectroRecords(2);
-$msg='Электро эпиляция. Клиенты посетившие студию '.$model->days_electrod2.' дней назад. '.$model->getDateEl(2);
-renderBlock('ee2',$msg,$list2,$i);
-$list1=array_merge($list1,$list2);
-
-$i=$i+count($list2);
-$list2=$model->findElectroRecords(3);
-$msg='Электро эпиляция. Клиенты посетившие студию '.$model->days_electrod3.' дней назад. '.$model->getDateEl(3);
-renderBlock('ee3',$msg,$list2,$i);
-$list1=array_merge($list1,$list2);
 ?>
 
 <script>

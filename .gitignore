@@ -10,3 +10,6 @@ config
 sql
 assets
 /back/runtime
+runtime
+tests
+tests
