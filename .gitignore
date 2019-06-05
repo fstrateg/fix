@@ -1,0 +1,10 @@
+
+vendor/
+
+frontend/
+
+nb/
+
+\.directory
+config
+sql
