@@ -1,0 +1,82 @@
+.cpanel{
+    font-size: 12px;
+}
+/*.cpanel div.icon{
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.cpanel div.icon a:hover {
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #f9f9f9;
+    color: #0B55C4;
+}
+.cpanel div.icon a {
+    display: block;
+    float: left;
+    border: 1px solid #f0f0f0;
+    height: 97px;
+    width: 108px;
+    color: #666;
+    vertical-align: middle;
+    text-decoration: none;
+}
+.cpanel div.icon {
+    padding: 10px 0;
+}*/
+.cpanel span{
+    display: block;
+    text-align: center;
+}
+.cpanel .large a{
+    min-width: 97px;
+}
+.cpanel div.panelbtn a {
+    display: block;
+    border: 1px solid #f0f0f0;
+    color: #666;
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.cpanel div.panelbtn a:hover {
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #f9f9f9;
+    color: #0B55C4;
+}
+span.icon{
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+span.cbtn{
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+    padding: 10px;
+}
+span.delete{
+    background: url('../images/icon-32-delete.png');
+}
+span.save{
+    background: url('../images/icon-32-save.png');
+}
+span.article{
+    background: url('../images/icon-48-article.png');
+}
+span.user{
+    background: url('../images/icon-48-user.png');
+}
+span.female{
+    background: url('../images/icon-48-female.png');
+}
