@@ -1,0 +1,50 @@
+.item{
+    margin-bottom: 30px;
+    text-align: center;
+}
+.item img{
+    border: 1px solid #f7cac9;
+}
+
+.item .txt{
+    position: absolute;
+    top: 100px;
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+    color: #A64139;
+}
+
+.navbar-inverse{
+    background-color: #A64139 !important;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus
+{
+    background-color: #f7cac9 !important;
+}
+.navbar-inverse .navbar-toggle:hover{
+    background-color: #A64139 !important;
+}
+
+.y_button {
+    display: block;
+    background: #f7cac9;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    border: 3px solid #feebce;
+    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #fff inset;
+    margin-bottom: 20px;
+    transition: .3s;
+    position: relative;
+    border-radius: 10px 0 10px 0;
+    overflow: hidden;
+}
+
+.y_button:hover {
+    opacity: 1;
+    border: 3px solid #92c9d1;
+}
