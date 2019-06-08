@@ -12,8 +12,7 @@ $grp=SettingsRecord::getValuesGroup('quality');
 
 /*$ldays=SettingsRecord::findValue('quality','laser');
 $vdays=SettingsRecord::findValue('quality','wax');*/
-$ldays=$grp['laser'];
-$vdays=$grp['wax'];
+$vdays=$grp['fix'];
 $onnew=($grp['onnew']=='1')?'checked':'';
 $chmaster=($grp['chmaster']=='1')?'checked':'';
 
@@ -31,7 +30,7 @@ function outListStaff($name,$prop_id)
         $check=in_array($s['id'],$r0)?'checked':'';
         $ck="<input type='checkbox' name='{$name}[{$s['id']}]' value='1' $check> {$s['name']}";
         $hd="<input type='hidden' name='{$name}[{$s['id']}]' value='0'>";
-        if ($prop_id==2)
+        if ($prop_id==1)
         {
             $vl=isset($rr[$s['id']]['allcli'])?$rr[$s['id']]['allcli']:0;
             //if($s['id']==273552) {echo $rr[$s['id']]['onnew']; exit();}
@@ -54,30 +53,10 @@ $form = ActiveForm::begin(['action'=>$url]);
     <a class="btn btn-default pull-right" href='<?= \yii\helpers\Url::to('qualitymsg')?>'>Сообщения</a>
 </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Электро эпиляция</div>
-        <div class="panel-body">
-            <div class="form-group">
-                <input id="eall" type="checkbox" name="eall"> <label for="eall">Все клиенты указанных мастеров</label>
-            </div>
-            <? outListStaff('electro',3) ?>
-        </div>
-    </div>
+
 
 <div class="panel panel-default">
-    <div class="panel-heading">Лазерная эпиляция</div>
-    <div class="panel-body">
-        <div class="form-group">
-        <input id="ldays" class="days" type="number" name="ldays" value="<?= $ldays ?>" size="5"/> <label for="ldays">Количество дней назад</label>
-        </div>
-        <div class="form-group">
-            <input id="lall" type="checkbox" name="lall"> <label for="lall">Все клиенты указанных мастеров</label>
-        </div>
-        <? outListStaff('laser',1) ?>
-    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">Шугаринг/Воск эпиляция</div>
+    <div class="panel-heading">Массаж</div>
     <div class="panel-body">
         <div class="form-group">
             <input id="vdays" class="days" type="number" name="vdays" value="<?= $vdays?>" size="5"/> <label for="vdays">Количество дней назад</label>
@@ -85,12 +64,8 @@ $form = ActiveForm::begin(['action'=>$url]);
         <div class="form-group">
             <input id="vall" type="checkbox" name="vall" /> <label for="vall">Все клиенты указанных мастеров</label>
         </div>
-        <? outListStaff('vosk',2) ?>
+        <? outListStaff('fix',1) ?>
     </div>
-</div>
-<div class="form-control">
-    <input type="hidden" name="chmaster" value="0"/>
-    <input id="chmaster" type="checkbox" name="chmaster" <?= $chmaster?> value="1"/> <label for="chmaster">Отображать клиентов сменивших мастера</label>
 </div>
 <div style="padding-top: 20px">
     <input type="submit" class="btn btn-success" value="Сохранить">
@@ -108,14 +83,8 @@ $js = <<< JS
                 window.location.reload();
             });
         });
-        $('#lall').on('click',function(e){
-            $('li.laser input').attr('checked',this.checked);
-        });
         $('#vall').on('click',function(e){
-            $('li.vosk input').attr('checked',this.checked);
-        });
-        $('#eall').on('click',function(e){
-            $('li.electro input').attr('checked',this.checked);
+            $('li.fix input').attr('checked',this.checked);
         });
     });
 JS;
@@ -125,7 +94,7 @@ $css = <<< CSS
 ul.list{
     list-style-type: none;
 }
-li.vosk,li.laser,li.electro{padding-bottom: 10px;}
+li.fix{padding-bottom: 10px;}
 input.days{
     width: 40px;
 }

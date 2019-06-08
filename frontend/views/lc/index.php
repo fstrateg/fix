@@ -20,7 +20,7 @@ JuiAsset::register($this);
 function renderBlock($tag,$msg,$list,$i)
 {
     $stat=['0'=>'-','1'=>'Проведен','2'=>'Ошибка'];
-    $type=['laser'=>'1','wax'=>'2','ee1'=>'3','ee2'=>'4','ee3'=>'5'];
+    $type=['fix'=>'1'];
     ?>
     <section class="mb-20">
         <hr>
@@ -112,16 +112,15 @@ function renderBlock($tag,$msg,$list,$i)
 
 <?php
 $i=1;
-$list2=$model->findElectroRecords(1);
-$msg='Массаж. Клиенты посетившие студию '.$model->days_electrod1.' дней назад. '.$model->getDateEl(1);
-renderBlock('ee1',$msg,$list2,$i);
+$list2=$model->findFixRecords();
+$msg='Массаж. Клиенты посетившие студию '.$model->days_fix.' дней назад. '.$model->getDateFix();
+renderBlock('fix',$msg,$list2,$i);
 $list1=$list2;
 
 ?>
 
 <script>
-    window.watsappmsg=['<?= $model->getLaserMsg() ?>',
-    '<?= $model->getWaxMsg() ?>',"<?= $model->getEEMsg(1) ?>","<?= $model->getEEMsg(2) ?>",'<?= $model->getEEMsg(3) ?>'];
+    window.watsappmsg=['<?= $model->getFixMsg() ?>'];
 
 </script>
 
@@ -220,45 +219,13 @@ $js=<<< JS
             }
          );
 
-         $('#wax-save').on('click',function(){
-           savevl(2);
-         });
 
-         $('#laser-save').on('click',function(){
+         $('#fix-save').on('click',function(){
            savevl(1);
          });
 
-         $('#ee1-save').on('click',function(){
-           savevl(3);
-         });
-
-         $('#ee2-save').on('click',function(){
-           savevl(4);
-         });
-
-         $('#ee3-save').on('click',function(){
-           savevl(5);
-         });
-
-
-         $('#wax-all').on('click',function(){
-           setVL(2,this);
-         });
-
-         $('#laser-all').on('click',function(){
-            setVL(1,this);
-         });
-
-         $('#ee1-all').on('click',function(){
-           setVL(3,this);
-         });
-
-         $('#ee2-all').on('click',function(){
-           setVL(4,this);
-         });
-
-         $('#ee3-all').on('click',function(){
-           setVL(5,this);
+         $('#fix-all').on('click',function(){
+           setVL(1,this);
          });
 
          $('button.close').on('click',function(){

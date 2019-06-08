@@ -20,21 +20,9 @@ $form=ActiveForm::begin();
             'body' => Yii::$app->session->getFlash('ok')
         ]);
     }
-    $s=SettingsRecord::findOne(['group'=>'quality','param'=>'lasermsg']);
+    $s=SettingsRecord::findOne(['group'=>'quality','param'=>'fixmsg']);
     echo '<label>'.$s->getAttribute('name').'</label>';
-    echo $form->field($s,'val')->textarea(['class'=>'form-control','rows'=>'5','name'=>"lasermsg"])->label(false);
-    $s=SettingsRecord::findOne(['group'=>'quality','param'=>'waxmsg']);
-    echo '<label>'.$s->getAttribute('name').'</label>';
-    echo $form->field($s,'val')->textarea(['class'=>'form-control','rows'=>'5','name'=>"waxmsg"])->label(false);
-    $s=SettingsRecord::findOne(['group'=>'quality','param'=>'electro1']);
-    echo '<label>'.$s->getAttribute('name').'</label>';
-    echo $form->field($s,'val')->textarea(['class'=>'form-control','rows'=>'5','name'=>"electro1"])->label(false);
-$s=SettingsRecord::findOne(['group'=>'quality','param'=>'electro2']);
-    echo '<label>'.$s->getAttribute('name').'</label>';
-    echo $form->field($s,'val')->textarea(['class'=>'form-control','rows'=>'5','name'=>"electro2"])->label(false);
-$s=SettingsRecord::findOne(['group'=>'quality','param'=>'electro3']);
-    echo '<label>'.$s->getAttribute('name').'</label>';
-    echo $form->field($s,'val')->textarea(['class'=>'form-control','rows'=>'5','name'=>"electro3"])->label(false);
+    echo $form->field($s,'val')->textarea(['class'=>'form-control','rows'=>'5','name'=>"fixmsg"])->label(false);
 ?>
 <input type="submit" class="btn btn-success" value="Сохранить">
 <?

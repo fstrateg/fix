@@ -14,14 +14,11 @@ class Quality extends ActiveRecord
      */
     public static function qualitySave($req)
     {
-        SettingsRecord::setValue('quality','laser',$req->post('ldays'));
-        SettingsRecord::setValue('quality','wax',$req->post('vdays'));
-        SettingsRecord::setValue('quality','chmaster',$req->post('chmaster'));
-       // SettingsRecord::setValue('quality','onnew',$req->post('onnew'));
+        SettingsRecord::setValue('quality','fix',$req->post('vdays'));
 
-        self::sinchro_staff($req->post('laser'),1);
-        self::sinchro_staff($req->post('vosk'),2);
-        self::sinchro_staff($req->post('electro'),3);
+        //self::sinchro_staff($req->post('laser'),1);
+        self::sinchro_staff($req->post('fix'),1);
+        //self::sinchro_staff($req->post('electro'),3);
         self::setkli($req->post('allcli'));
         //print_r($req->post('allcli'));
         //exit();
