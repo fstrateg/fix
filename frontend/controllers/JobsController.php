@@ -119,10 +119,10 @@ class JobsController extends Controller
         //$t->sendMessageAll("test","test1");
         //echo \yii\helpers\Url::base(true);
         //echo \yii\helpers\Url::to('sgoogle',true);
-        /*$id=4533;
+        $id=4533;
         $sms=new SMS();
         //$sms->client_phone="555904504";
-        $sms->client_phone="77766196331";
+        $sms->client_phone="996555904504";
         //echo 'test';
         $sms->sendtest();
         //echo $sms->getMessageText();*/
@@ -132,10 +132,10 @@ class JobsController extends Controller
         /*$curdate=new \DateTime('now');
         echo $curdate->format('Y-m-d H:i:s');*/
         //JobsModel::test();
-        echo "<a href='https://accounts.google.com/o/oauth2/auth?"
+        /*echo "<a href='https://accounts.google.com/o/oauth2/auth?"
             . "access_type=offline&client_id=XXXX&"
             . "scope=".urlencode("https://www.google.com/m8/feeds")."&response_type=code&"
-            . "redirect_uri=http://fix.laletty.ru/jobs/test2'>Google</a>";
+            . "redirect_uri=http://fix.laletty.ru/jobs/test2'>Google</a>";*/
 
 
     }
