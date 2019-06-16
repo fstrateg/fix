@@ -16,6 +16,7 @@ use yii;
 use common\components\Date;
 use common\components\simple_html_dom;
 use rapidweb\googlecontacts\factories\ContactFactory;
+use yii\helpers\ArrayHelper;
 
 class JobsModel extends \stdClass
 {
@@ -307,5 +308,54 @@ Select b.name,b.phone,b.googleid
             echo "<ErrMsg>{$error->getMessage()}</ErrMsg>\n";
         }
         echo '</CurrencyRates>';
+    }
+
+    public static function ControlDeleted()
+    {
+        $dat=new Date();
+        $dat=$dat->toMySqlRound();
+        $cfg=\common\models\SettingsRecord::getValuesGroup('yclients');
+        //print_r($cfg);
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "http://api.yclients.com/api/v1/records/{$cfg['company']}?page=1&count=300&start_date={$dat}&end_date={$dat}");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type: application/json",
+            "Authorization: Bearer {$cfg['token']}, User {$cfg['user']}"
+        ));
+
+        $response = curl_exec($ch);
+        $rcode=curl_getinfo ($ch , CURLINFO_RESPONSE_CODE);
+        // Если не все нормально то выходим чтобы не снести посещения
+        if ($rcode<>200) return;
+        curl_close($ch);
+        $response=json_decode($response,true);
+        $data=$response["data"];
+        if (is_array($data)) {
+            $ydat = array();
+            foreach ($data as $item) {
+                $ydat[$item["id"]] = $item["date"];
+            }
+            $db=yii::$app->getDb();
+            $cmd = $db->createCommand("
+            Select resource_id,appointed from records where appointed like '{$dat}%' and deleted=0
+            ");
+            $dsql = $cmd->queryAll();
+            $dsql = ArrayHelper::index($dsql, 'resource_id');
+            foreach ($dsql as $id => $vis) {
+                if (!isset($ydat[$id])) {
+                    $db->createCommand("update records set deleted=1 where resource_id=".$id)->execute();
+                } else {
+                    if ($ydat[$id] != $vis['appointed'])
+                        $db->createCommand("update records set appointed='{$ydat[$id]}' where resource_id=".$id)->execute();
+                    unset($ydat[$id]);
+                }
+            }
+        }
+        echo 'OK';
     }
 }

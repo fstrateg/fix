@@ -109,6 +109,14 @@ class JobsController extends Controller
     }
 
     /**
+     * Проверка на отмененные заказы: чтобы клиенты не приходили зря
+     */
+    public function actionCheckdeleted()
+    {
+        JobsModel::ControlDeleted();
+    }
+
+    /**
     * Тестовый метод
     */
     public function actionTest()
