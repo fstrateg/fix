@@ -303,6 +303,7 @@ class SMS extends BaseObject
         $sms->sendSMS($this->client_phone,$msg,$this->transaction_id);
         //if ($this->lat) $msg=SMS::translate($msg);
         $t->sendMessageAll($msg,$this->client_phone." ({$this->transaction_id})");
+        Messages::sendMessage($msg,$this->client_phone." ({$this->transaction_id})",$this->client_phone,"sms");
     }
 
     private function getProvider()
