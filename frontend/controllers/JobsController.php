@@ -9,6 +9,7 @@ use common\components\Telegram;
 use common\models\SMSLaser;
 use common\models\SMSElectro;
 use common\models\SMSSettings;
+use common\models\SysMessagesRecord;
 use frontend\models\YclientsImport;
 use frontend\models\YclientsLogRecord;
 use frontend\models\JobsModel;
@@ -114,6 +115,24 @@ class JobsController extends Controller
     public function actionCheckdeleted()
     {
         JobsModel::ControlDeleted();
+    }
+
+    public function actionGetmessages($lastid,$count=300)
+    {
+        $rws=SysMessagesRecord::find()->where("id>{$lastid}")->limit($count)->orderBy("id")->all();
+        $rez=[];
+        foreach($rws as $item)
+        {
+            $rez[]=[
+                'id'=>$item->id,
+                'phone'=>$item->phone,
+                'grp'=>$item->grp,
+                'info'=>$item->info,
+                'msg'=>$item->msg,
+                'dt'=>$item->dt,
+            ];
+        }
+        echo json_encode($rez);
     }
 
     /**
