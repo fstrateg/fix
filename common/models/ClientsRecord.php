@@ -1,11 +1,12 @@
 <?php
 namespace common\models;
 
+use common\components\Messages;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 use app\models\CityRecord;
-use common\components\Telegram;
+// use common\components\Telegram;
 
 class ClientsRecord extends ActiveRecord
 {
@@ -108,9 +109,10 @@ class ClientsRecord extends ActiveRecord
     {
            if ($insert)
             {
-                $t=Telegram::instance();
-                $t->sendMessage('Alex','Добавлен новый клиент: '.$this->name);
-                $t->sendMessage('nikvoit','Добавлен новый клиент: '.$this->name);
+                Messages::sendMessage2('Добавлен новый клиент: '.$this->name);
+                /*$t=Telegram::instance();
+                $t->sendMessage('Alex',);
+                $t->sendMessage('nikvoit','Добавлен новый клиент: '.$this->name);*/
             }
             return true;
     }
